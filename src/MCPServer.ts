@@ -1,4 +1,4 @@
-import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { Server, ServerOptions } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   CallToolRequestSchema,
@@ -11,19 +11,23 @@ class MCPServer {
   private tools: Map<string, Tool>;
   server: Server;
 
-  constructor(name: string, version: string) {
+  constructor(name: string, version: string, serverOptions?: ServerOptions | undefined) {
     this.tools = new Map();
+    let defaultCapabilities: ServerOptions["capabilities"] = {
+      ...serverOptions?.capabilities,
+      tools: {},
+      // logging capabilities are required for the server to function if strict
+      // capabilities are enforced and the client is setting log level
+      logging: {},
+    };
     this.server = new Server(
       {
         name: name,
         version: version,
       },
       {
-        capabilities: {
-          resources: {},
-          tools: {},
-          prompts: {},
-        },
+        capabilities: defaultCapabilities,
+        ...serverOptions
       }
     )
   }

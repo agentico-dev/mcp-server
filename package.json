@@ -1,6 +1,6 @@
 {
   "name": "@agentico/mcp-server",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Model Context Protocol Server facade to simplify the implementation of agents",
   "type": "module",
   "author": {
@@ -66,11 +66,11 @@
     "LICENSE"
   ],
   "devDependencies": {
-    "@types/node": "^22.10.5",
+    "@types/node": "^20.11.24",
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.1.0",
+    "@modelcontextprotocol/sdk": "~1.4.0",
     "zod": "^3.24.1",
     "zod-to-json-schema": "^3.24.1"
   },
