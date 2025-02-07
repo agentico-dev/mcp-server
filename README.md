@@ -118,9 +118,9 @@ This pattern allows for a flexible and extensible way to manage and implement to
 
 ## Support Us
 
-If you find this useful, please consider supporting us by starring this repository, by contributing to the project or by becoming a sponsor.
+If you find this helpful, please consider supporting us by giving a star to this repository, by contributing to the project or by becoming a sponsor.
 
-You can find more information on how to support us at [La Rebelion GitHub Sponsors](https://github.com/sponsors/la-rebelion). Also [buying us a coffee](https://buymeacoffee.com/larebelion), [PayPal](https://www.paypal.com/donate?hosted_button_id=7CV28AHGL9ZZY) are great ways to support us or purchasing ["La Rebelion" merch](https://go.rebelion.la/merch).
+You can find more information on how to support us at [La Rebelion GitHub Sponsors](https://github.com/sponsors/la-rebelion). Also, [buying us a coffee](https://buymeacoffee.com/larebelion), [PayPal](https://www.paypal.com/donate?hosted_button_id=7CV28AHGL9ZZY) is a great way to support us or purchasing ["La Rebelion" merch](https://go.rebelion.la/merch).
 
 ## License
 

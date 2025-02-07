@@ -5,20 +5,34 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 
+import { NodeSDK } from '@opentelemetry/sdk-node';
+
 import { Tool } from "./Tool.js";
+import { otelSDK } from "./OTLSetup.js";
 
 class MCPServer {
   private tools: Map<string, Tool>;
   server: Server;
+  private otelSDK: NodeSDK | undefined;
 
-  constructor(name: string, version: string, serverOptions?: ServerOptions | undefined) {
+  constructor(name: string, 
+              version: string,
+              exporterUrl?: string,
+              serverOptions?: ServerOptions | undefined
+  ) {
     this.tools = new Map();
+    if (exporterUrl) {
+      this.otelSDK = otelSDK(exporterUrl, name, version);
+    }
+
+
     let defaultCapabilities: ServerOptions["capabilities"] = {
       ...serverOptions?.capabilities,
       tools: {},
       // logging capabilities are required for the server to function if strict
       // capabilities are enforced and the client is setting log level
       logging: {},
+      otel: exporterUrl ? {} : undefined,
     };
     this.server = new Server(
       {
@@ -80,6 +94,10 @@ class MCPServer {
     // This allows the server to communicate via standard input/output streams.
     const transport = new StdioServerTransport();
     await this.server.connect(transport);
+    // do we need to start the OpenTelemetry SDK?
+    if (this.otelSDK) {
+      this.otelSDK.start();
+    }
 
     // Cleanup on exit
     process.on("SIGINT", async () => {
